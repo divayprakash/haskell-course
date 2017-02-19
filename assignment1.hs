@@ -17,8 +17,27 @@ remChamp x = remChampHelper (maximum x) x
             | y == x    = xs
             | otherwise = x : remChampHelper y xs
 
+merge :: [Int] -> [Int] -> [Int]
+merge [] ys = ys
+merge xs [] = xs
+merge (x:xs) (y:ys)
+    | x <= y = x:(merge xs (y:ys))
+    | otherwise = y:(merge (x:xs) ys)
+
+mergesort :: [Int] -> [Int]
+mergesort [] = []
+mergesort [x] = [x]
+mergesort l = merge (mergesort (front l)) (mergesort (back l))
+    where
+        front l = take ((length l) `div` 2) l
+        back l = drop ((length l) `div` 2) l
+
 remRunnerUp::[Int]->[Int]
-remRunnerUp [22, 35, 4, 65] = [22, 4, 65]
-remRunnerUp [1, 5, 2, 3, 5, 4] = [1, 2, 3, 5, 4]
-remRunnerUp [5] = [5]
-remRunnerUp x = x
+remRunnerUp x
+    | (length x) <= 2 = x
+    | otherwise       = remRunnerUpHelper ((mergesort x)!!(length x - 2)) x
+    where
+        remRunnerUpHelper _ [] = []
+        remRunnerUpHelper y (x:xs)
+            | y == x    = xs
+            | otherwise = x : remRunnerUpHelper y xs
