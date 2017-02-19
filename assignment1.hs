@@ -30,7 +30,8 @@ remDup = remDupHelper []
             | otherwise     = remDupHelper (seen ++ [x]) xs
 
 remChamp::[Int]->[Int]
-remChamp x = delete (maximum x) x
+remChamp [] = []
+remChamp x  = delete (maximum x) x
 
 remRunnerUp::[Int]->[Int]
 remRunnerUp x
