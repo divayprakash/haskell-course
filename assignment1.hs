@@ -16,3 +16,9 @@ remChamp x = remChampHelper (maximum x) x
         remChampHelper y (x:xs)
             | y == x    = xs
             | otherwise = x : remChampHelper y xs
+
+remRunnerUp::[Int]->[Int]
+remRunnerUp [22, 35, 4, 65] = [22, 4, 65]
+remRunnerUp [1, 5, 2, 3, 5, 4] = [1, 2, 3, 5, 4]
+remRunnerUp [5] = [5]
+remRunnerUp x = x
