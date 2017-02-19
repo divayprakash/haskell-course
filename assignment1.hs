@@ -9,14 +9,14 @@ remDup = remDupHelper []
             | x `elem` seen = remDupHelper seen xs
             | otherwise     = remDupHelper (seen ++ [x]) xs
 
-remChamp::[Int]->[Int]
-remChamp x = remChampHelper (maximum x) x
-    where
-        remChampHelper _ [] = []
-        remChampHelper y (x:xs)
-            | y == x    = xs
-            | otherwise = x : remChampHelper y xs
+delete _ [] = []
+delete y (x:xs)
+    | y == x    = xs
+    | otherwise = x : delete y xs
 
+remChamp::[Int]->[Int]
+remChamp x = delete (maximum x) x
+        
 merge :: [Int] -> [Int] -> [Int]
 merge [] ys = ys
 merge xs [] = xs
@@ -35,9 +35,4 @@ mergesort l = merge (mergesort (front l)) (mergesort (back l))
 remRunnerUp::[Int]->[Int]
 remRunnerUp x
     | (length x) <= 2 = x
-    | otherwise       = remRunnerUpHelper ((mergesort x)!!(length x - 2)) x
-    where
-        remRunnerUpHelper _ [] = []
-        remRunnerUpHelper y (x:xs)
-            | y == x    = xs
-            | otherwise = x : remRunnerUpHelper y xs
+    | otherwise       = delete ((mergesort x)!!(length x - 2)) x
