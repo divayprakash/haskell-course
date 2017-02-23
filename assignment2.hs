@@ -12,3 +12,6 @@ is_matrix_helper x y
 is_matrix :: [[a]] -> Bool
 is_matrix [] = False
 is_matrix x = is_matrix_helper x (count x)
+
+is_square_matrix :: [[a]] -> Bool
+is_square_matrix x = (is_matrix x) && ((length x) == (length (x !! 0)))
