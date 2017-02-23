@@ -29,14 +29,12 @@ multiplyable x y
     | ((length (x !! 0)) == length y) = True
     | otherwise = False
 
-multiply :: Int -> Int -> Int
-multiply x y = x * y
-
-transpose :: [[a]] -> [[a]]
+transpose :: [[Int]] -> [[Int]]
 transpose [] = repeat []
-transpose (m:ms) = zipWith (:) m (transpose ms)
+transpose (x:xs) = zipWith (:) x (transpose xs)
+
+dotProduct :: [Int] -> [Int] -> Int
+dotProduct x y = sum $ zipWith (*) x y
 
 multiply_matrix :: [[Int]] -> [[Int]] -> [[Int]]
-multiply_matrix x y
-    | (multiplyable x y) == True = [[sum $ zipWith (*) xr yc | yc <- (transpose y) ] | xr <- x]
-    | otherwise = []
+multiply_matrix x y = [[dotProduct xr yc | yc <- transpose y ] | xr <- x]
