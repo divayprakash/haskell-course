@@ -28,3 +28,11 @@ multiplyable :: [[Int]] -> [[Int]] -> Bool
 multiplyable x y
     | ((length (x !! 0)) == length y) = True
     | otherwise = False
+
+multiply :: Int -> Int -> Int
+multiply x y = x * y
+
+multiply_matrix :: [[Int]] -> [[Int]] -> [[Int]]
+multiply_matrix x y
+    | (multiplyable x y) == True = [] 
+    | otherwise = []
