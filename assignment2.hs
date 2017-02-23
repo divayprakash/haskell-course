@@ -23,3 +23,8 @@ add_matrix :: [[Int]] -> [[Int]] -> [[Int]]
 add_matrix x y
     | (addable x y) == True = zipWith (zipWith (+)) x y
     | otherwise = []
+
+multiplyable :: [[Int]] -> [[Int]] -> Bool
+multiplyable x y
+    | ((length (x !! 0)) == length y) = True
+    | otherwise = False
