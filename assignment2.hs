@@ -32,6 +32,11 @@ multiplyable x y
 multiply :: Int -> Int -> Int
 multiply x y = x * y
 
+transpose :: [[Int]] -> [[Int]]
+transpose [[]] = []
+transpose [[], _] = []
+transpose x = (map head x) : transpose (map tail x)
+
 multiply_matrix :: [[Int]] -> [[Int]] -> [[Int]]
 multiply_matrix x y
     | (multiplyable x y) == True = [] 
