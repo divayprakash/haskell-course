@@ -17,4 +17,4 @@ is_square_matrix :: [[a]] -> Bool
 is_square_matrix x = (is_matrix x) && ((length x) == (length (x !! 0)))
 
 addable :: [[Int]] -> [[Int]] -> Bool
-addable x y = ((is_square_matrix x) && (is_square_matrix y) && (length x == length y) && ((length (x !! 0)) == (length (y !! 0))))
+addable x y = ((length x == length y) && ((length (x !! 0)) == (length (y !! 0))))
