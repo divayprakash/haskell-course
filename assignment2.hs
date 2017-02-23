@@ -37,4 +37,6 @@ dotProduct :: [Int] -> [Int] -> Int
 dotProduct x y = sum $ zipWith (*) x y
 
 multiply_matrix :: [[Int]] -> [[Int]] -> [[Int]]
-multiply_matrix x y = [[dotProduct xr yc | yc <- transpose y ] | xr <- x]
+multiply_matrix x y
+    | (multiplyable x y) == True = [[dotProduct xr yc | yc <- transpose y ] | xr <- x]
+    | otherwise = []
