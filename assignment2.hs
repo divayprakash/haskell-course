@@ -41,6 +41,21 @@ multiply_matrix x y
     | (multiplyable x y) == True = [[dotProduct xr yc | yc <- transpose y ] | xr <- x]
     | otherwise                  = []
 
+merge :: [Int] -> [Int] -> [Int]
+merge [] ys = ys
+merge xs [] = xs
+merge (x:xs) (y:ys)
+    | x <= y    = x:(merge xs (y:ys))
+    | otherwise = y:(merge (x:xs) ys)
+
+mergesort :: [Int] -> [Int]
+mergesort []  = []
+mergesort [x] = [x]
+mergesort l = merge (mergesort (front l)) (mergesort (back l))
+    where
+        front l = take ((length l) `div` 2) l
+        back l  = drop ((length l) `div` 2) l
+
 remDup::[Int]->[Int]
 remDup = remDupHelper []
     where
@@ -59,4 +74,4 @@ ramanujan_helper n  = [(a + b)
               (a + b) == (c + d)]
 
 ramanujan :: Int -> Int
-ramanujan n = ((remDup (ramanujan_helper 50)) !! (n - 1))
+ramanujan n = ((mergesort (remDup (ramanujan_helper 30))) !! (n - 1))
