@@ -66,12 +66,12 @@ remDup = remDupHelper []
 
 cubes = map (^3) [1..]
 
-ramanujan_helper n  = [(a + b)
-            | a <- (take n cubes),
-              b <- (filter (>a) (take n cubes)),
-              c <- (filter (<b) (filter (>a) (take n cubes))),
-              d <- (filter (<b) (filter (>a) (take n cubes))),
-              (a + b) == (c + d)]
+ramanujan_helper n = [(a + b)
+                        | a <- (take n cubes),
+                          b <- (filter (>a) (take n cubes)),
+                          c <- (filter (<b) (filter (>a) (take n cubes))),
+                          d <- (filter (<b) (filter (>a) (take n cubes))),
+                          (a + b) == (c + d)]
 
 ramanujan :: Int -> Int
-ramanujan n = ((mergesort (remDup (ramanujan_helper 30))) !! (n - 1))
+ramanujan n = ((mergesort (remDup (ramanujan_helper 50))) !! (n - 1))
