@@ -40,3 +40,15 @@ multiply_matrix :: [[Int]] -> [[Int]] -> [[Int]]
 multiply_matrix x y
     | (multiplyable x y) == True = [[dotProduct xr yc | yc <- transpose y ] | xr <- x]
     | otherwise                  = []
+
+cubes = map (^3) [1..]
+
+ramanujan_helper n  = [(a + b)
+            | a <- cubes,
+              b <- (filter (>a) cubes),
+              c <- (filter (<b) (filter (>a) cubes)),
+              d <- (filter (<b) (filter (>a) cubes)),
+              (a + b) == (c + d)]
+
+ramanujan :: Int -> Int
+ramanujan n = ((ramanujan_helper 21000) !! (n - 1))
