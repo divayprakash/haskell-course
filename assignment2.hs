@@ -41,14 +41,22 @@ multiply_matrix x y
     | (multiplyable x y) == True = [[dotProduct xr yc | yc <- transpose y ] | xr <- x]
     | otherwise                  = []
 
+remDup::[Int]->[Int]
+remDup = remDupHelper []
+    where
+        remDupHelper seen [] = seen
+        remDupHelper seen (x:xs)
+            | x `elem` seen = remDupHelper seen xs
+            | otherwise     = remDupHelper (seen ++ [x]) xs
+
 cubes = map (^3) [1..]
 
 ramanujan_helper n  = [(a + b)
-            | a <- cubes,
-              b <- (filter (>a) cubes),
-              c <- (filter (<b) (filter (>a) cubes)),
-              d <- (filter (<b) (filter (>a) cubes)),
+            | a <- (take n cubes),
+              b <- (filter (>a) (take n cubes)),
+              c <- (filter (<b) (filter (>a) (take n cubes))),
+              d <- (filter (<b) (filter (>a) (take n cubes))),
               (a + b) == (c + d)]
 
 ramanujan :: Int -> Int
-ramanujan n = ((ramanujan_helper 21000) !! (n - 1))
+ramanujan n = ((remDup (ramanujan_helper 50)) !! (n - 1))
