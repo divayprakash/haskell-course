@@ -13,6 +13,13 @@ binary_list = [binary i | i <- [0,1..]]
 nohundred_list = [i | i <- [0,1..], isInfixOf "100" (show (binary_list !! i)) == False]
 
 nohundred :: Int -> Int
-nohundred x
-    | x <= 0    = 0
-    | otherwise = nohundred_list !! x
+nohundred n
+    | n <= 0    = 0
+    | otherwise = nohundred_list !! n
+
+infList :: [Integer]
+
+infListElem :: Int -> Int
+infListElem n
+    | n < 0     = 0
+    | otherwise = infList !! (n - 1)
