@@ -56,3 +56,28 @@ infList = [toInteger (infListElem i) | i <- [1..]]
 
 priorTo :: String -> String -> Bool
 priorTo s1 s2 = length s1 < length s2 || (length s1 == length s2 && s1 < s2)
+
+sumDigits :: Int->Int
+sumDigits n
+    | n == 0    = 0
+    | otherwise = (n `mod` 10) + (sumDigits (n `div` 10))
+
+sumDigitsCheck :: Int -> [Int] -> Int
+sumDigitsCheck n (x : xs)
+    | n >= (sumDigits x) = (sumDigitsCheck n xs)
+    | otherwise          = x
+
+minus (x:xs) (y:ys)
+    | x < y  = x : minus  xs  (y:ys)
+    | x == y = minus  xs     ys 
+    | x > y  = minus (x:xs)  ys
+minus xs _   = xs
+
+primes :: [Int]
+primes = sieve [2..]
+    where
+        sieve []     = []
+        sieve (p:xs) = p : sieve (xs `minus` [p * p, p * p + p..])
+
+goodPrime :: Int -> Int
+goodPrime n = sumDigitsCheck n primes
