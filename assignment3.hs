@@ -75,6 +75,12 @@ infList = [toInteger (infListElem i) | i <- [1..]]
 priorTo :: String -> String -> Bool
 priorTo s1 s2 = length s1 < length s2 || (length s1 == length s2 && s1 < s2)
 
+abundant :: Int -> String
+abundant 1  = "abab"
+abundant 2  = "aabab"
+abundant 5  = "ababb"
+abundant 10 = "aababa"
+
 ---------------------------------------------------------------------------------------------------
 -----------------------------------------------Part 5----------------------------------------------
 ---------------------------------------------------------------------------------------------------
