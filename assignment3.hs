@@ -42,7 +42,7 @@ remDup = remDupHelper []
 
 infListCreate :: Int -> Int -> [Int] -> [Int]
 infListCreate n i list
- | n > i = (infListCreate n (i + 1) (mergesort (remDup (((list !! i) * 2) : ((list !! i) * 3) : ((list !!i) * 5) : list))))
+ | n > i = (infListCreate n (i + 1) (mergesort (remDup (((list !! i) * 2) : ((list !! i) * 3) : ((list !! i) * 5) : list))))
  | otherwise = list
 
 infListElem :: Int -> Int
@@ -53,3 +53,6 @@ infListElem n
 
 infList :: [Integer]
 infList = [toInteger (infListElem i) | i <- [1..]]
+
+priorTo :: String -> String -> Bool
+priorTo s1 s2 = length s1 < length s2 || (length s1 == length s2 && s1 < s2)
