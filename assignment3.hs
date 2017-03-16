@@ -79,3 +79,36 @@ primes = sieve [2..]
 
 goodPrime :: Int -> Int
 goodPrime n = sumDigitsCheck n primes
+
+getDigitsList :: Integer -> [Integer]
+getDigitsList x
+    | x == 0    = []
+    | otherwise = getDigitsList (x `div` 10) ++ [x `mod` 10]
+
+lookAndSay :: Integer -> Integer
+lookAndSay n = read (concatMap describe (group (show n)))
+    where
+        describe run = show (length run) ++ take 1 run
+
+lookAndSayList = iterate lookAndSay 1
+
+stringLookAndSay n = show (fromInteger (lookAndSayList !! n))
+getDigitsListHelper n m = ((getDigitsList (lookAndSayList !! n)) !! m)
+
+las :: Int -> Integer
+las n
+    | n < 0 = 0
+    | length (stringLookAndSay n) >= 4 = 
+        ((getDigitsListHelper n 0) * 1000)
+        + ((getDigitsList (lookAndSayList !! n) !! 1) * 100)
+        + ((getDigitsList (lookAndSayList !! n) !! 2) * 10)
+        + ((getDigitsList (lookAndSayList !! n) !! 3) * 1)
+    | length (show (fromInteger (lookAndSayList !! n))) == 3 = 
+        ((getDigitsList (lookAndSayList !! n) !! 0) * 100)
+        + ((getDigitsList (lookAndSayList !! n) !! 1) * 10)
+        + ((getDigitsList (lookAndSayList !! n) !! 2) * 1)
+    | length (show (fromInteger (lookAndSayList !! n))) == 2 = 
+        ((getDigitsList (lookAndSayList !! n) !! 0) * 10)
+        + ((getDigitsList (lookAndSayList !! n) !! 1) * 1)
+    | length (show (fromInteger (lookAndSayList !! n))) == 1 = 
+        ((getDigitsList (lookAndSayList !! n) !! 0) * 1)
