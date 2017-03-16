@@ -1,9 +1,7 @@
 import Data.List
 
 largestPower :: Int -> Int -> Int
-largestPower n p = sum [floor (fromIntegral n / fromIntegral (p ^ i))
-                            | i <- [1..n],
-                              (p ^ i) < n]
+largestPower n p = sum [floor (fromIntegral n / fromIntegral (p ^ i)) | i <- [1..n], (p ^ i) < n]
 
 binary :: Int -> Int
 binary 0 = 0
@@ -21,8 +19,8 @@ merge :: [Int] -> [Int] -> [Int]
 merge [] ys = ys
 merge xs [] = xs
 merge (x:xs) (y:ys)
-    | x <= y    = x:(merge xs (y:ys))
-    | otherwise = y:(merge (x:xs) ys)
+    | x <= y    = x : (merge xs (y : ys))
+    | otherwise = y : (merge (x : xs) ys)
 
 mergesort :: [Int] -> [Int]
 mergesort []  = []
@@ -42,8 +40,8 @@ remDup = remDupHelper []
 
 infListCreate :: Int -> Int -> [Int] -> [Int]
 infListCreate n i list
- | n > i = (infListCreate n (i + 1) (mergesort (remDup (((list !! i) * 2) : ((list !! i) * 3) : ((list !! i) * 5) : list))))
- | otherwise = list
+    | n > i = (infListCreate n (i + 1) (mergesort (remDup (((list !! i) * 2) : ((list !! i) * 3) : ((list !! i) * 5) : list))))
+    | otherwise = list
 
 infListElem :: Int -> Int
 infListElem n
@@ -67,10 +65,10 @@ sumDigitsCheck n (x : xs)
     | n >= (sumDigits x) = (sumDigitsCheck n xs)
     | otherwise          = x
 
-minus (x:xs) (y:ys)
-    | x < y  = x : minus  xs  (y:ys)
-    | x == y = minus  xs     ys 
-    | x > y  = minus (x:xs)  ys
+minus (x : xs) (y : ys)
+    | x < y  = x : minus xs (y : ys)
+    | x == y = minus xs ys 
+    | x > y  = minus (x : xs) ys
 minus xs _   = xs
 
 primes :: [Int]
