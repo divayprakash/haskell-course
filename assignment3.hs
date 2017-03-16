@@ -92,23 +92,26 @@ lookAndSay n = read (concatMap describe (group (show n)))
 
 lookAndSayList = iterate lookAndSay 1
 
+stringLookAndSay :: Int -> String
 stringLookAndSay n = show (fromInteger (lookAndSayList !! n))
+
+getDigitsListHelper :: Int -> Int -> Integer
 getDigitsListHelper n m = ((getDigitsList (lookAndSayList !! n)) !! m)
 
 las :: Int -> Integer
 las n
     | n < 0 = 0
     | length (stringLookAndSay n) >= 4 = 
-        ((getDigitsListHelper n 0) * 1000)
-        + ((getDigitsList (lookAndSayList !! n) !! 1) * 100)
-        + ((getDigitsList (lookAndSayList !! n) !! 2) * 10)
-        + ((getDigitsList (lookAndSayList !! n) !! 3) * 1)
+          ((getDigitsListHelper n 0) * 1000)
+        + ((getDigitsListHelper n 1) * 100)
+        + ((getDigitsListHelper n 2) * 10)
+        + ((getDigitsListHelper n 3) * 1)
     | length (show (fromInteger (lookAndSayList !! n))) == 3 = 
-        ((getDigitsList (lookAndSayList !! n) !! 0) * 100)
-        + ((getDigitsList (lookAndSayList !! n) !! 1) * 10)
-        + ((getDigitsList (lookAndSayList !! n) !! 2) * 1)
+          ((getDigitsListHelper n 0) * 100)
+        + ((getDigitsListHelper n 1) * 10)
+        + ((getDigitsListHelper n 2) * 1)
     | length (show (fromInteger (lookAndSayList !! n))) == 2 = 
-        ((getDigitsList (lookAndSayList !! n) !! 0) * 10)
-        + ((getDigitsList (lookAndSayList !! n) !! 1) * 1)
+          ((getDigitsListHelper n 0) * 10)
+        + ((getDigitsListHelper n 1) * 1)
     | length (show (fromInteger (lookAndSayList !! n))) == 1 = 
-        ((getDigitsList (lookAndSayList !! n) !! 0) * 1)
+          ((getDigitsListHelper n 0) * 1)
