@@ -15,17 +15,16 @@ largestPower n p = sum [floor (fromIntegral n / fromIntegral (p ^ i)) | i <- [1.
 -----------------------------------------------Part 2----------------------------------------------
 ---------------------------------------------------------------------------------------------------
 
-binary :: Int -> Int
-binary 0 = 0
-binary x = 10 * (binary (x `div` 2)) + (x `mod` 2)
+binary :: Int -> [Int]
+binary 0 = [0]
+binary x = binary (x `div` 2) ++ [x `mod` 2]
 
-binary_list = [binary i | i <- [0,1..]]
-nohundred_list = [i | i <- [0,1..], isInfixOf "100" (show (binary_list !! i)) == False]
+nohundred_list = [i | i <- [1,2..], (([1,0,0] `isInfixOf` (binary i)) == False)]
 
 nohundred :: Int -> Int
 nohundred n
     | n <= 0    = 0
-    | otherwise = nohundred_list !! n
+    | otherwise = nohundred_list !! (n - 1)
 
 ---------------------------------------------------------------------------------------------------
 -----------------------------------------------Part 3----------------------------------------------
