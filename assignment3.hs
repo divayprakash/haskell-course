@@ -31,21 +31,6 @@ nohundred n
 -----------------------------------------------Part 3----------------------------------------------
 ---------------------------------------------------------------------------------------------------
 
-merge :: [Int] -> [Int] -> [Int]
-merge [] ys = ys
-merge xs [] = xs
-merge (x:xs) (y:ys)
-    | x <= y    = x : (merge xs (y : ys))
-    | otherwise = y : (merge (x : xs) ys)
-
-mergesort :: [Int] -> [Int]
-mergesort []  = []
-mergesort [x] = [x]
-mergesort l   = merge (mergesort (front l)) (mergesort (back l))
-    where
-        front l = take ((length l) `div` 2) l
-        back l  = drop ((length l) `div` 2) l
-
 remDup::[Int]->[Int]
 remDup = remDupHelper []
     where
@@ -56,7 +41,7 @@ remDup = remDupHelper []
 
 infListCreate :: Int -> Int -> [Int] -> [Int]
 infListCreate n i list
-    | n > i = (infListCreate n (i + 1) (mergesort (remDup (((list !! i) * 2) : ((list !! i) * 3) : ((list !! i) * 5) : list))))
+    | n > i = (infListCreate n (i + 1) (sort (remDup (((list !! i) * 2) : ((list !! i) * 3) : ((list !! i) * 5) : list))))
     | otherwise = list
 
 infListElem :: Int -> Int
