@@ -9,8 +9,12 @@ import Data.List
 ---------------------------------------------------------------------------------------------------
 
 largestPower :: Int -> Int -> Int
-largestPower n p = sum [floor (fromIntegral n / fromIntegral (p ^ i)) | i <- [1..n], (p ^ i) <= n]
+largestPower n p = (largestPowerHelper n p (0 - n))
 
+largestPowerHelper :: Int -> Int -> Int -> Int
+largestPowerHelper n p count
+    | n > 0     = (largestPowerHelper (n `div` p) p (count + n))
+    | otherwise = count
 ---------------------------------------------------------------------------------------------------
 -----------------------------------------------Part 2----------------------------------------------
 ---------------------------------------------------------------------------------------------------
