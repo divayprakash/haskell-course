@@ -15,10 +15,9 @@ main = do
 
 printfunc :: [String] -> Int -> IO ()
 printfunc lines length
-    | length > 0  = printfunchelper lines length
-    | length == 0 = exitSuccess
-
-printfunchelper lines length = do
-    writeFile "temp" ""
-    putStrLn (reverse (lines!!(length - 1)))
-    printfunc lines (length - 1)
+    | length > 0  = do
+        putStrLn (reverse (lines!!(length - 1)))
+        printfunc lines (length - 1)
+    | length == 0 = do
+        writeFile "temp" ""
+        exitSuccess
