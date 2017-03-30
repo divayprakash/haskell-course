@@ -42,6 +42,7 @@ remRunnerUp [5] = [5]
 
 
 **Sample Test Cases**
+
 Test Case | Input | Output
 --------- | ----- | ------
 Test Case 1 | repl "abcde" | "aabbccddee"
