@@ -45,13 +45,13 @@ remRunnerUp [5] = [5]
 
 Test Case | Input | Output
 --------- | ----- | ------
-Test Case 1 | repl "abcde" | "aabbccddee"
-Test Case 2	| repl " " | "  "
-Test Case 3	| remDup [1,1,2,2,3,3,4,4,4] | [1,2,3,4]
-Test Case 4	| remDup [1,2,3,3,2] | [1,2,3]
-Test Case 5	| remChamp [22, 35, 4, 65] | [22,35,4]
-Test Case 6	| remChamp [1,5,2,3,5,4] | [1,2,3,5,4]
-Test Case 7	| remChamp [5] | []
-Test Case 8	| remRunnerUp [22, 35, 4, 65] | [22,4,65]
-Test Case 9	| remRunnerUp [1,5,2,3,5,4] | [1,2,3,5,4]
-Test Case 10 | remRunnerUp [5] | [5]
+Test Case 1 | `repl "abcde"` | `"aabbccddee"`
+Test Case 2	| `repl " "` | `"  "`
+Test Case 3	| `remDup [1,1,2,2,3,3,4,4,4]` | `[1,2,3,4]`
+Test Case 4	| `remDup [1,2,3,3,2]` | `[1,2,3]`
+Test Case 5	| `remChamp [22, 35, 4, 65]` | `[22,35,4]`
+Test Case 6	| `remChamp [1,5,2,3,5,4]` | `[1,2,3,5,4]`
+Test Case 7	| `remChamp [5]` | `[]`
+Test Case 8	| `remRunnerUp [22, 35, 4, 65]` | `[22,4,65]`
+Test Case 9	| `remRunnerUp [1,5,2,3,5,4]` | `[1,2,3,5,4]`
+Test Case 10 | `remRunnerUp [5]` | `[5]`
